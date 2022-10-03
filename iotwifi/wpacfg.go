@@ -163,7 +163,7 @@ func (wpa *WpaCfg) ConnectNetwork(creds WpaCredentials) (WpaConnection, error) {
 	wpa.Log.Info("WPA add ssid got: %s", ssidStatus)
 
 	// 3. Set the psk for the new network
-	addPskOut, err := exec.Command("wpa_cli", "-i", "wlan0", "set_network", net, "psk", "\""+creds.Psk+"\"").Output()
+	addPskOut, err := exec.Command("wpa_cli", "-i", "wlan0", "set_network", net, "psk", "'\""+creds.Psk+"'\"'").Output()
 	if err != nil {
 		wpa.Log.Fatal(err.Error())
 		return connection, err
